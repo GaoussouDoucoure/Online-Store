@@ -1,22 +1,21 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class store {
-    // Store Home Screen
+    // Store Home Screen and Options
     public static void storeHomeScreen(){
-        System.out.println("Welcome to our store!");
-    }
-    //Options for user to choose from
-    public static void option(){
         System.out.println("""
-                Please enter a number to proceed:
-                1 - Display Products
-                2 - Display Cart
-                0 - Exit - closes out of the application
-                """);
+        Welcome to our store!
+        Please enter a number to proceed:
+        1 - Display Products
+        2 - Display Cart
+        0 - Exit - closes out of the application
+        """);
     }
+
     //Products Screen
     public static void products(){
         System.out.println("""
@@ -48,17 +47,39 @@ public class store {
             //Create a scanner object to read the file
             Scanner scanner = new Scanner(file);
 
-            //Read and process each line from the file
-            while (scanner.hasNextLine()){
-                String line = scanner.next();
-                System.out.println(line);
-
+            if (scanner.hasNextLine()){
+                String header = scanner.nextLine();
+                header.split("\\|");
+//                System.out.println(header);
             }
 
+            //Read and process each line from the file
+            while (scanner.hasNextLine()){
+                String line = scanner.nextLine();
+//                System.out.println(line);
+                String[] arr = line.split("\\|");
+                String sku = arr[0].trim();
+                String productName = arr[1].trim();
+                double price = Double.parseDouble(arr[2].trim());
+                String department = arr[3].trim();
+//                System.out.println(Arrays.toString(arr));
 
+                inventory.add(new Product(sku, productName, price, department));
+            }
+            storeHomeScreen();
+            Scanner sc = new Scanner(System.in);
+            int userInput = sc.nextInt();
+            if (userInput == 0){
+                System.out.println("Application Closed!");
+            }else if(userInput == 1){
+                displayInventory(inventory);
+            }
 
         }catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getMessage());
         }
+
+
+
     }
 }
