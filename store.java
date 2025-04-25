@@ -43,7 +43,7 @@ public class store {
         ArrayList<Product> inventory = new ArrayList<>();
         try{
             //Create a File object for the file to be read
-            File file = new File("products.txt");
+            File file = new File("products.csv");
             //Create a scanner object to read the file
             Scanner scanner = new Scanner(file);
 
