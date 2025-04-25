@@ -66,6 +66,7 @@ public class store {
 
                 inventory.add(new Product(sku, productName, price, department));
             }
+
             storeHomeScreen();
             Scanner sc = new Scanner(System.in);
             int userInput = sc.nextInt();
