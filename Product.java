@@ -1,13 +1,13 @@
 class Product{
         private String sku;
-        private String name;
+        private String productName;
         private double price;
         private String department;
 
         //constructor
         public Product(String sku, String name, double price, String department){
             this.sku=sku;
-            this.name=name;
+            this.productName=name;
             this.price=price;
             this.department=department;
         }
@@ -16,7 +16,7 @@ class Product{
             return this.sku;
         }
         public String getName(){
-            return this.name;
+            return this.productName;
         }
         public double getPrice(){
             return this.price;
@@ -25,8 +25,11 @@ class Product{
             return this.department;
         }
         //display format
+        // Override toString() for readable output
+        @Override
         public String toString() {
-            return String.format("%s | %s | $%.2f | %s",sku,name,price,department);
+            return "SKU: " + sku + ", Product: " + productName + ", Price: $" + price + ", Department: " + department;
         }
+
 }
 
